@@ -1,0 +1,375 @@
+@import url("../assets/whitespace-reset.css");
+
+html {
+	height: 100%;
+}
+
+header {
+	height: 100%;
+	clear: both;
+}
+
+.content p {
+	display: inline;
+}
+
+body {
+	position: relative;
+	display: flex;
+	height: 100%;
+	font-size: 16px;
+	font-family: Helvetica, arial, sans-serif;
+}
+
+nav h2, main h2, nav a {
+	display: inline-block;
+}
+
+nav {
+	padding-top: 60px;
+	width: 335px;
+	background-color: #464f77;
+	height: 100%;
+	text-align: center;
+}
+
+nav ul {
+	margin: 0 0 45px 0;
+}
+
+nav a {
+	color: #b2b5c3;
+	text-decoration: none;
+}
+
+nav h2 {
+	font-size: 18px;
+	color: #d8d9e0;
+	padding: 5px 0 5px 35px;
+}
+
+nav li {
+	padding: 10px 10px 10px 30px;
+	overflow: hidden;
+}
+
+nav li:first-child .circle {
+	position: relative;
+	top: 5px;
+}
+
+.allTodosIcon {
+	background: transparent url("../assets/all-todos.png") 0 0 no-repeat;
+}
+
+.active, .active a {
+	background-color: #38405e;
+}
+
+.active, .active a, .active .circle, .current.circle {
+	color: white;
+}
+
+.completedIcon {
+	background: transparent url("../assets/done.png") 0 0 no-repeat;
+}
+
+.strike, .strike a {
+	color: #b3b3b3;
+	text-decoration: line-through;
+}
+
+.strike.content img {
+	content: url("../assets/ticked-box.png");
+}
+
+.content img {
+	content: url("../assets/unticked-box.png");
+}
+
+.content .trash img {
+	content: url("../assets/trash.png");
+}
+
+.circle {
+	float: right;
+	padding: 3px;
+	display: inline-block;
+	font-size: 16px;
+	background-color: #6b7292;
+	color: #ccced8;
+  box-sizing: initial;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 14px;
+  position: relative;
+	margin-right: 25px;
+}
+
+.current.circle {
+	float: none;
+	margin-left: 20px;
+}
+
+.active .circle, .current.circle {
+	background-color: #148fd5;
+}
+
+main {
+	margin: 0 20px;
+	width: 100%;
+}
+
+main h2 {
+	font-size: 21px;
+	padding: 75px 0 0 10px;
+}
+
+table {
+  margin-top: 23px;
+  max-width: 745px;
+  width: 95%;
+}
+
+tr {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+th {
+  color: #148fd5;
+  font-weight: 700;
+}
+
+td, th {
+  text-align: left;
+  padding: 15px 0;
+}
+
+.description p {
+	display: inline;
+}
+
+[scope=col], [scope=colHeader] {
+  width: 5%;
+}
+
+
+
+[scope=col] img {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px 0 10px;
+}
+
+.trash {
+	text-align: right;
+}
+
+
+
+#edit {
+	display: none;
+}
+
+.overlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+form p {
+	box-sizing: border-box;
+	padding: 7px 0;
+}
+
+dl {
+	display: flex;
+	padding-bottom: 25px;
+}
+
+dt {
+	vertical-align: middle;
+	padding: 7px 0;
+	width: 110px;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+dd {
+	width: 80%;
+}
+
+dd, dt {
+	display: inline-block;
+}
+
+fieldset {
+	margin-left: 108px;
+	margin-top: -5px;
+}
+
+select {
+	width: 28%;
+	padding: 7px 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	background-color: transparent;
+	border-radius: 0;
+}
+
+textarea {
+	font: 16px Helvetica, arial, sans-serif;
+	padding: 7px;
+	width: 100%;
+	resize: none;
+	box-sizing: border-box;
+}
+
+.date {
+	display: flex;
+	justify-content: space-between;
+}
+
+form {
+	padding: 37px 40px 40px 30px;
+	background-color: white;
+	z-index: 3;
+	position: fixed;
+	box-sizing: border-box;
+	width: 575px;
+	top: 107px;
+	left: 50%;
+	margin-left: -160px;
+	display: none;
+}
+
+input[type="text"] {
+	box-sizing: border-box;
+	padding: 7px;
+	font-size: 16px;
+	width: 100%;
+}
+
+input[type="submit"], input[type="button"] {
+	background-color: #148fd5;
+	color: white;
+	padding: 8px 0;
+	width: 180px;
+	font: 16px Helvetica, arial, sans-serif;
+	margin-right: 10px;
+	border: none;
+	border-radius: 4px;
+}
+
+input[type="submit"]:last-child {
+	margin-right: 0;
+}
+
+.hamburger-icon {
+	background: transparent url("../assets/hamburger.png") 0 0 no-repeat;
+	background-size: 20px 20px;
+	position: absolute;
+	left: 357px;
+	top: 19px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	padding: 10px;
+	display: none;
+	height: 25px;
+	border: white;
+	outline: none;
+}
+
+.hamburger-icon:focus, .hamburger-icon:hover {
+	cursor: pointer;
+}
+
+:checked + header{
+	display: block;
+}
+
+button {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 930px) {
+	:checked ~ form {
+		position: absolute;
+		width: 70%;
+		min-width: 300px;
+		height: 500px;
+		left: 40%;
+	}
+
+	dd, dt {
+		display: block;
+	}
+
+	dl {
+		display: block;
+	}
+
+	input[type="submit"] {
+		width: 40%;
+	}
+
+	fieldset {
+		margin-left: 0;
+	}
+
+	textarea {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	header {
+		display: none;
+	}
+
+	.hamburger-icon {
+		display: block;
+		left: 20px;
+		top: 19px;
+	}
+
+}
+
+:checked {
+	position: absolute;
+	left: 357px;
+	top: 19px;
+	border: 5px solid white;
+}
+
+th[scope="col"]:hover, td:hover {
+	background-color: #148fd5;
+	cursor: pointer;
+}
+
+.trash:hover {
+	background-color: orange;
+	cursor: pointer;
+}
+
+nav li:hover {
+	background-color: #38405e;
+	cursor: pointer;
+}
+
+
+
+
+

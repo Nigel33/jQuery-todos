@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="stylesheets/style.css" rel="stylesheet" />
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/handlebars.js"></script>
+    <script src="javascripts/app.js"></script>
+    <title>Todo-App</title>
+
+  </head>
+  <body>
+    <label for="hamburger"></label>
+    <input type="checkbox" name="hamburger" id="hamburger" class="hamburger-icon"/>
+
+  	<header>
+
+  	</header>
+
+  	<main>
+      <div class="addAnchor">
+        <div class="deleteAnchor">
+          <div class="editAnchor">
+            <div class="markCompleteAnchor">
+              <div class="container">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script id="navHeaderTemplate" type="text/x-handlebars">
+      <nav>
+        <ul>
+          <li data-status="allTodos" class="active">
+            <h2 class="allTodosIcon">All Todos</h2>
+            <p class="circle">{{totalQuantity}}</p>
+          </li>
+
+          {{# each items as |item|}}
+          <li data-status="todos">
+            <a href="#">{{@key}}</a>
+            <p class="circle">{{this.total}}</p>
+          </li>
+          {{/each}}
+        </ul>
+
+
+        <ul class="strike">
+          <li data-status="allCompletedTodos">
+            <h2 class="completedIcon">Completed</h2>
+            <p class="circle">{{completedQuantity}}</p>
+          </li>
+          {{# each items as |item|}}
+          <li data-status="completedTodos">
+            <a href="#">{{@key}}</a>
+            <p class="circle">{{this.completed}}</p>
+          </li>
+          {{/each}}
+        </ul>
+
+
+      </nav>
+    </script>
+
+    <script id="todosHeaderTemplate" type="text/x-handlebars">
+       <div class="todos">
+          <ul>
+            <li>
+              <h2>{{group}}</h2>
+              <p class="current circle">{{quantity}}</p>
+            </li>
+          </ul>
+
+          <table>
+            <tr>
+              <th scope="colHeader">
+                <button name="add"><img src="assets/plus.png" alt="add" /></button>
+              </th>
+              <th>Add new to do</th>
+              <th></th>
+            </tr>
+            {{> todosTemplate }}
+          </table>
+        </div>
+      </script>
+
+      <script id="todosTemplate" type="text/x-handlebars">
+        {{#each todos}}
+          {{#if completed}}
+        <tr data-id={{id}} class="strike content">
+          <th scope="col" class"toggle">
+            <button><img /></button>
+          </th>
+          {{else}}
+        <tr data-id={{id}} class="content">
+           <th scope="col">
+             <button><img /></button>
+           </th>
+          {{/if}}
+
+          <td>
+            <p>{{title}} - {{monthYear}}</p>
+          </td>
+          <td class="trash"><button><img /></button></td>
+        </tr>
+        {{/each}}
+      </script>
+
+    <script id="modal" type="text/x-handlebars">
+      <form action="api/todos" method="post" data-id="{{id}}" data-status="{{completed}}">
+        <dl>
+          <dt>
+            <label for="title">Title</label>
+          </dt>
+          <dd>
+            <input type="text" name=title id="title" value="{{title}}" placeholder="title" />
+          </dd>
+        </dl>
+        <dl>
+          <dt>
+            <label for="due-date">Due Date</label>
+          </dt>
+          <dd class="date"><!--
+         --><select name="day">
+            {{#if day.[0].value}}
+              <option value="{{day.[0].value}}" selected>{{day.[1].text}}</option>
+            {{else}}
+              <option value="{{day}}" disabled selected>Day</option>
+            {{/if}}
+              <option value="01">1</option>
+              <option value="02">2</option>
+              <option value="03">3</option>
+              <option value="04">4</option>
+              <option value="05">5</option>
+              <option value="06">6</option>
+              <option value="07">7</option>
+              <option value="08">8</option>
+              <option value="09">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="27">29</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+              <option value="31">31</option>
+            </select><!--
+         --><p>/</p><!--
+         --><select name="month">
+            {{#if month.[0].value}}
+              <option value="{{month.[0].value}}" selected>{{month.[1].text}}</option>
+            {{else}}
+              <option value="{{month}}" disabled selected>Month</option>
+            {{/if}}
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select><!--
+         --><p>/</p><!--
+         --><select name="year">
+            {{#if year}}
+              <option value="{{year}}" selected>{{year}}</option>
+            {{else}}
+              <option value="Year" disabled selected>Year</option>
+            {{/if}}
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select><!--
+       --></dd>
+        </dl>
+        <dl>
+          <dt>Description</dt>
+          <dd>
+          <textarea name="description" rows="6" cols="40" placeholder="Description">{{description}}</textarea>
+          </dd>
+        </dl>
+        <fieldset>
+          <input type="submit" value="Save" />
+          <input type="button" name="mark_as_complete" value="Mark As Complete" />
+        </fieldset>
+      </form>
+      <div class="overlay"></div>
+    </script>
+  </body>
+</html>
